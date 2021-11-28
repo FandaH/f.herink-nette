@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  nette_elastic_dev80:
+    environment:
+      ADD_HOST_DOMAIN: 1
+    image: nette_elastic_dev80:dev
+    container_name: nette_elastic8.0
+    build:
+      context: .
+      target: nette_elastic8.0
+      dockerfile: ./docker/Dockerfile.dev
+    ports:
+      - "82:82" # HOST_PORT:CONTAINER_PORT
+    #    network_mode: "host" # sdileni localhost s hostem, pozor na konflikt portu, viz. apache.ports.conf a apache.vhost.conf, nefunguje na ios
+    volumes:
+      - .:/var/www
+      - ./docker/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/log:/data/log
+      - ./docker/apache.ports.conf:/etc/apache2/ports.conf
+      - ./docker/apache.vhost.conf:/etc/apache2/sites-enabled/vhost.conf
+
+
+
+
+
+
