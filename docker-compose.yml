@@ -2,8 +2,6 @@ version: '3.7'
 
 services:
   nette_elastic_dev80:
-    environment:
-      ADD_HOST_DOMAIN: 1
     image: nette_elastic_dev80:dev
     container_name: nette_elastic80
     build:
@@ -16,7 +14,7 @@ services:
     volumes:
       - .:/var/www
       - ./docker/php.ini:/usr/local/etc/php/php.ini
-      - ./docker/log:/data/log
+      - ./log:/var/log/nette:rw
       - ./docker/apache.ports.conf:/etc/apache2/ports.conf
       - ./docker/apache.vhost.conf:/etc/apache2/sites-enabled/vhost.conf
 
