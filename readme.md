@@ -24,19 +24,18 @@ backend swsystems
 
 ### Stazeni databazi
 Vsechny databaze predpokladame, ze bezi na localhostu, stahnout a importnout vyse uvedene databaze.
-.
 
 ### Stazeni z repozitare
-```
-    git@gitlab.ssemi.cz:root/nette-elastic.git
+```sh
+git clone https://gitlab.ssemi.cz/root/nette-elastic.git
 ```
 
 
 ### Inicializace projektu
 #### Konfigurace
 Mistni nastaveni projektu
-```
-  cp ./app/config/config.local.neon.template ./app/config/config.local.neon
+```sh
+cp ./app/config/config.local.neon.template ./app/config/config.local.neon
 ```
 
 - **cookiePath**: !!! Dulezite !!! - v pripade, ze projekt bezi v podadresari, je nutne nastavit cookiePath na prislusnou hodnotu odpovidajici url,
@@ -47,23 +46,21 @@ Mistni nastaveni projektu
 
 Konfigurace debug hostu - do tohoto souboru pridat svoji IP, aby se zobrazovala Tracy,
 pripadne vynutit debug rezim podle potreby
-```
-  cp ./app/config/debug.conf.php.template ./app/config/debug.conf.php
-```
+```sh
+cp ./app/config/debug.conf.php.template ./app/config/debug.conf.php
 ```
 
 #### Nastaveni opravneni na adresarich (pravo zapisu pro webserver, nebo pro vsechny)
-```
-  chmod -R 0777 ./temp
-  chmod -R 0777 ./log
-  chmod -R 0777 ./data
+```sh
+chmod -R 0777 ./log
+chmod -R 0777 ./data
 ```
 
 ### Nastaveni dockeru
 
 #### Zkopirovat vzor do aktualniho yml
-```
-  cp docker-compose.yml.template docker-compose.yml
+```sh
+cp docker-compose.yml.template docker-compose.yml
 ```
 Dev prostredi pro docker je nastavene defaultne na host port 88 (kvuli zabraneni konfliktu s lokalnim apache)
 Localhost sit se sdili s hostem, takze aplikace v kontejneru se muze primo pripojit na databazi bezici na hostu.
@@ -71,14 +68,14 @@ Pripadne jine nastaveni site v docker-compose.yml, mapovani souboru/adresaru do 
 
 
 #### Build image
-```
-  docker-compose build
+```sh
+docker-compose build
 ```
 Toto by melo stahnout a nastavit vse potrebne
 
 #### Sestaveni a spusteni kontejneru
-```
-  docker-compose up
+```sh
+docker-compose up
 ```
 V tuto chvili by mel byt docker projekt ready na http://localhost:88
 
@@ -89,22 +86,22 @@ Je mozne pridat si docker konfiguraci (me to beha i bez toho) pro snadnejsi ovla
     - Pridat novou, typ **Docker compose**
     - do compose files nalistovat docker-compose.yml
 
-  ![Panel](./docker/phpstorm-configuration-panel.png)
+![Panel](./docker/phpstorm-configuration-panel.png)
 
 
-### Xdebug 2.5.5
+### Xdebug 3.1.1
 V PHPStormu nastavit v File>Settings>PHP>Debug
-- debug port: 9056
+- debug port: 9003
 - vypnout "Force break at first line when a script is outside of project" aby to neodchytavalo adminery a podobne veci kolem
 
 Kdyz se pouziva host network, potom v tuto chvili uz je to funkcni.
 
 #### Nastaveni PHPstorm pro remote ports
-- v ./docker/php.ini zapnout **xdebug.remote_connect_back**
+- v ./docker/php.ini zapnout **xdebug.discover_client_host**
 - File>Settings>PHP>Servers
     - pridat remote server
         - host: localhost, port: 82
-        - zapnout path mappigs
+        - zapnout path mappings
         - koren projektu namapovat na server dir /var/www
           ![Path mapping](./docker/phpstorm-xdebug-add-server.png)
       
