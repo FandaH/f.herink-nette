@@ -17,7 +17,6 @@ services:
       - ./log:/var/log/nette:rw
       - ./docker/apache.ports.conf:/etc/apache2/ports.conf
       - ./docker/apache.vhost.conf:/etc/apache2/sites-enabled/vhost.conf
-
   mysqldb:
     image: mariadb:latest
     ports:
@@ -27,11 +26,15 @@ services:
     volumes:
       - ./database:/var/lib/mysql
       - ./docker/mysql/mariadb.cnf:/etc/mysql/mariadb.cnf
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
 
-
-
-
-
-
-
-
+volumes:
+  elasticsearch:
+    driver: local
