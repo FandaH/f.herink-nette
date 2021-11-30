@@ -7,9 +7,9 @@ services:
     image: nette_elastic_dev80:dev
     container_name: nette_elastic80
     build:
-      context: .
-      target: nette_elastic80
-      dockerfile: ./docker/Dockerfile.dev
+      context: ./docker
+      target: nette_elastic8.0
+      dockerfile: ./Dockerfile.dev
     ports:
       - "82:82" # HOST_PORT:CONTAINER_PORT
     #    network_mode: "host" # sdileni localhost s hostem, pozor na konflikt portu, viz. apache.ports.conf a apache.vhost.conf, nefunguje na ios

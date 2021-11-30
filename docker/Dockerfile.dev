@@ -1,10 +1,7 @@
 FROM php:8.0-apache AS nette_elastic80
 
-RUN a2enmod rewrite
-
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    apt-get install -y \
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y \
         cron \
         libpng-dev \
         zlib1g-dev \
@@ -42,11 +39,9 @@ RUN docker-php-ext-install mysqli
 COPY ./docker/php.ini /etc/php/php.ini
 COPY ./docker/add-host-domain.sh /add-host-domain.sh
 COPY ./docker/run.sh /run.sh
+RUN a2enmod rewrite
 
-RUN chmod +x /add-host-domain.sh
-RUN chmod +x /run.sh
-# Create the log file to be able to run tail
-RUN touch /var/log/container.log
+RUN docker-php-ext-install mysqli
 
 RUN docker-php-ext-configure gd && docker-php-ext-install gd
 RUN docker-php-ext-enable gd
@@ -59,6 +54,15 @@ RUN docker-php-ext-enable mailparse
 
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
+
+COPY ./php.ini /etc/php/php.ini
+COPY ./add-host-domain.sh /add-host-domain.sh
+COPY ./run.sh /run.sh
+
+RUN chmod +x /add-host-domain.sh
+RUN chmod +x /run.sh
+# Create the log file to be able to run tail
+RUN touch /var/log/container.log
 
 RUN rm -rf /etc/apache2/sites-enabled/*
 RUN rm -rf /etc/apache2/sites-available/*
