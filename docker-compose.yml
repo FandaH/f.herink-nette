@@ -30,11 +30,8 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
     environment:
       - discovery.type=single-node
+      - TAKE_FILE_OWNERSHIP=1
     ports:
       - "9200:9200"
     volumes:
-      - elasticsearch:/usr/share/elasticsearch/data
-
-volumes:
-  elasticsearch:
-    driver: local
+      - ./data/elasticsearch:/usr/share/elasticsearch/data
