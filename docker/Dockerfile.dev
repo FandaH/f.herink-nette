@@ -1,4 +1,4 @@
-FROM php:8.0-apache AS nette_elastic8.0
+FROM php:8.0-apache AS nette_elastic80
 
 RUN a2enmod rewrite
 
@@ -21,6 +21,21 @@ RUN apt-get update && \
         net-tools \
         telnet \
     && apt-get clean
+
+    COPY ./docker/elasticsearch.yml /usr/share/elasticsearch/config
+
+
+
+#RUN groupadd -g 1000 elasticsearch && useradd -u 1000 -g 1000 -G 0 -m -d /usr/share/elasticsearch elasticsearch \
+#		&& chmod 0775 /usr/share/elasticsearch && chgrp 0 /usr/share/elasticsearch
+
+# install APT transport and wget
+#RUN apt-get update && \
+#  apt-get install -y --no-install-recommends \
+#  apt-transport-https \
+#  wget -y
+#
+#RUN wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.15.2-arm64.deb
 
 RUN docker-php-ext-install mysqli
 
