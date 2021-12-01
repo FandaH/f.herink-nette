@@ -24,7 +24,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=pokus
     volumes:
-      - ./database:/var/lib/mysql
+      - ./data/database:/var/lib/mysql
       - ./docker/mysql/mariadb.cnf:/etc/mysql/mariadb.cnf
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2

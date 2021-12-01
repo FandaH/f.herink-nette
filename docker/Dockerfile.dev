@@ -21,7 +21,7 @@ RUN apt-get install -y \
 
     COPY ./docker/elasticsearch.yml /usr/share/elasticsearch/config
 
-
+RUN a2enmod rewrite
 
 #RUN groupadd -g 1000 elasticsearch && useradd -u 1000 -g 1000 -G 0 -m -d /usr/share/elasticsearch elasticsearch \
 #		&& chmod 0775 /usr/share/elasticsearch && chgrp 0 /usr/share/elasticsearch
@@ -39,7 +39,6 @@ RUN docker-php-ext-install mysqli
 COPY ./docker/php.ini /etc/php/php.ini
 COPY ./docker/add-host-domain.sh /add-host-domain.sh
 COPY ./docker/run.sh /run.sh
-RUN a2enmod rewrite
 
 RUN docker-php-ext-install mysqli
 
