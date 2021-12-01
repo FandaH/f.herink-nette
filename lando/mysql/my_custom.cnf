@@ -1,0 +1,7 @@
+[mysqld]
+max_allowed_packet=32M
+bind_address=127.0.0.1
+
+
+
+
