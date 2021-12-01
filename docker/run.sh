@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # script that is run by docker each time container starts
 
 /add-host-domain.sh

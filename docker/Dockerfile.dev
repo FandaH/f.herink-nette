@@ -66,4 +66,4 @@ RUN echo "" > /etc/apache2/ports.conf
 RUN printf '\n\nServerName control.local\n\n' >> /etc/apache2/apache2.conf
 RUN rm -rf /var/www/html
 
-ENTRYPOINT /run.sh
+ENTRYPOINT bash /run.sh
