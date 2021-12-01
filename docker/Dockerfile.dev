@@ -1,10 +1,7 @@
 FROM php:8.0-apache AS nette_elastic80
 
-RUN a2enmod rewrite
-
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    apt-get install -y \
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y \
         cron \
         libpng-dev \
         zlib1g-dev \
@@ -24,7 +21,7 @@ RUN apt-get update && \
 
     COPY ./docker/elasticsearch.yml /usr/share/elasticsearch/config
 
-
+RUN a2enmod rewrite
 
 #RUN groupadd -g 1000 elasticsearch && useradd -u 1000 -g 1000 -G 0 -m -d /usr/share/elasticsearch elasticsearch \
 #		&& chmod 0775 /usr/share/elasticsearch && chgrp 0 /usr/share/elasticsearch
@@ -43,10 +40,7 @@ COPY ./docker/php.ini /etc/php/php.ini
 COPY ./docker/add-host-domain.sh /add-host-domain.sh
 COPY ./docker/run.sh /run.sh
 
-RUN chmod +x /add-host-domain.sh
-RUN chmod +x /run.sh
-# Create the log file to be able to run tail
-RUN touch /var/log/container.log
+RUN docker-php-ext-install mysqli
 
 RUN docker-php-ext-configure gd && docker-php-ext-install gd
 RUN docker-php-ext-enable gd
@@ -66,4 +60,6 @@ RUN echo "" > /etc/apache2/ports.conf
 RUN printf '\n\nServerName control.local\n\n' >> /etc/apache2/apache2.conf
 RUN rm -rf /var/www/html
 
-ENTRYPOINT bash /run.sh
+COPY ./php.ini /etc/php/php.ini
+
+CMD ["apache2-foreground"]

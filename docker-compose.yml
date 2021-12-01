@@ -2,24 +2,21 @@ version: '3.7'
 
 services:
   nette_elastic_dev80:
-    environment:
-      ADD_HOST_DOMAIN: 1
     image: nette_elastic_dev80:dev
     container_name: nette_elastic80
     build:
-      context: .
-      target: nette_elastic80
-      dockerfile: ./docker/Dockerfile.dev
+      context: ./docker
+      target: nette_elastic8.0
+      dockerfile: ./Dockerfile.dev
     ports:
       - "82:82" # HOST_PORT:CONTAINER_PORT
     #    network_mode: "host" # sdileni localhost s hostem, pozor na konflikt portu, viz. apache.ports.conf a apache.vhost.conf, nefunguje na ios
     volumes:
       - .:/var/www
       - ./docker/php.ini:/usr/local/etc/php/php.ini
-      - ./docker/log:/data/log
+      - ./log:/var/log/nette:rw
       - ./docker/apache.ports.conf:/etc/apache2/ports.conf
       - ./docker/apache.vhost.conf:/etc/apache2/sites-enabled/vhost.conf
-
   mysqldb:
     image: mariadb:latest
     ports:
@@ -27,13 +24,14 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=pokus
     volumes:
-      - ./database:/var/lib/mysql
+      - ./data/database:/var/lib/mysql
       - ./docker/mysql/mariadb.cnf:/etc/mysql/mariadb.cnf
-
-
-
-
-
-
-
-
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
+    environment:
+      - discovery.type=single-node
+      - TAKE_FILE_OWNERSHIP=1
+    ports:
+      - "9200:9200"
+    volumes:
+      - ./data/elasticsearch:/usr/share/elasticsearch/data
