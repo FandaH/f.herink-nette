@@ -36,9 +36,9 @@ RUN a2enmod rewrite
 
 RUN docker-php-ext-install mysqli
 
-COPY ./docker/php.ini /etc/php/php.ini
-COPY ./docker/add-host-domain.sh /add-host-domain.sh
-COPY ./docker/run.sh /run.sh
+#COPY ./docker/php.ini /etc/php/php.ini
+#COPY ./docker/add-host-domain.sh /add-host-domain.sh
+#COPY ./docker/run.sh /run.sh
 
 RUN docker-php-ext-install mysqli
 
