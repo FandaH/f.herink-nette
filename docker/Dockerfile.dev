@@ -19,7 +19,7 @@ RUN apt-get install -y \
         telnet \
     && apt-get clean
 
-    COPY ./docker/elasticsearch.yml /usr/share/elasticsearch/config
+    COPY ./elasticsearch.yml /usr/share/elasticsearch/config
 
 RUN a2enmod rewrite
 

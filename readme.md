@@ -4,7 +4,7 @@ backend swsystems
 
 ## Ostra verze
 - webserver
-    - https://projects.swsystems.cz/test-elastic
+    - http://localhost:82
     - branch: master
     - apache2 s mod_rewrite, prip. nginx s zohlednenim veci v .htaccess
     - php8.0
@@ -15,9 +15,9 @@ backend swsystems
         - mbstring
         - xdebug
 - databaze:
-    - server: docker.for.mac.localhost:3306
+    - server: docker.for.mac.localhost:3307
     - databaze:
-        - test-elastic
+        - test
 
 
 ## Instalace vyvojoveho prostredi
@@ -62,7 +62,7 @@ chmod -R 0777 ./data
 ```sh
 cp docker-compose.yml.template docker-compose.yml
 ```
-Dev prostredi pro docker je nastavene defaultne na host port 88 (kvuli zabraneni konfliktu s lokalnim apache)
+Dev prostredi pro docker je nastavene defaultne na host port 82 (kvuli zabraneni konfliktu s lokalnim apache)
 Localhost sit se sdili s hostem, takze aplikace v kontejneru se muze primo pripojit na databazi bezici na hostu.
 Pripadne jine nastaveni site v docker-compose.yml, mapovani souboru/adresaru do kontejneru tamtez.
 
@@ -77,7 +77,7 @@ Toto by melo stahnout a nastavit vse potrebne
 ```sh
 docker-compose up
 ```
-V tuto chvili by mel byt docker projekt ready na http://localhost:88
+V tuto chvili by mel byt docker projekt ready na http://localhost:82
 
 
 ### Pridat docker konfiguraci do phpstorm
