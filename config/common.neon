@@ -1,4 +1,21 @@
 parameters:
+                debug: %debugMode%
+
+    # DB pro zapis
+                database:
+                        driver: mysql
+                        host: docker.for.mac.localhost:3307
+                        dbname: pokus
+                        user: root
+                        password: pokus
+                        default_charset: UTF8
+                        collation: utf8_czech_ci
+                        options: [PDO::MYSQL_ATTR_COMPRESS = true]
+                        debugger:     true        # panel v debugger baru
+                        explain:      true        # explain dotazů v debugger bar
+                        conventions:  static  # nebo static nebo vaší jméno třídy, výchozí je discovered
+                        autowired:    true
+                        dsn: '%database.driver%:host=%database.host%;dbname=%database.dbname%'
 
 
 application:
@@ -15,3 +32,8 @@ di:
 	export:
 		parameters: no
 		tags: no
+
+extensions:
+    elastica: Contributte\Elastica\DI\ElasticaExtension
+
+

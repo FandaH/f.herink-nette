@@ -17,10 +17,10 @@ class Bootstrap
         $configurator->setDebugMode(TRUE);
 
 		//$configurator->setDebugMode('secret@23.75.345.200'); // enable for your remote IP
-		$configurator->enableTracy('/var/log/nette');
+		$configurator->enableTracy($appDir . '/log');
 
 		$configurator->setTimeZone('Europe/Prague');
-		$configurator->setTempDirectory('/tmp/nette');
+		$configurator->setTempDirectory($appDir . '/temp');
 
 		$configurator->createRobotLoader()
 			->addDirectory(__DIR__)
@@ -28,6 +28,7 @@ class Bootstrap
 
 		$configurator->addConfig($appDir . '/config/common.neon');
 		$configurator->addConfig($appDir . '/config/services.neon');
+        $configurator->addConfig($appDir . '/config/elastica.neon');
 		$configurator->addConfig($appDir . '/config/local.neon');
 
 		return $configurator;

@@ -1,2 +1,12 @@
 services:
 	- App\Router\RouterFactory::createRouter
+
+	# ElasticsSearch
+	elasticSearch: App\Models\Services\ElasticSearch
+
+# DB pro zapis
+	connectionDatabase: App\Models\Services\DatabaseConnection(%database.dsn%,%database.user%,%database.password%)
+	structureDatabase: Nette\Database\Structure(@connectionDatabase, @cacheStorage)
+	conversionDatabase: \Nette\Database\Conventions\StaticConventions()
+	database: App\Models\Services\DatabaseContext(@connectionDatabase, @structureDatabase, @conversionDatabase,  @cacheStorage)
+
