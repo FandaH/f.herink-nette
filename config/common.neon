@@ -17,6 +17,28 @@ parameters:
                         autowired:    true
                         dsn: '%database.driver%:host=%database.host%;dbname=%database.dbname%'
 
+                elastica:
+                    debug: %debugMode%
+                    host: localhost
+                    port: null
+                    username: null
+                    password: null
+                    path: null
+                    url: null
+                    proxy: null
+                    persistent: null
+                    timeout: null
+#                    connections: null
+                    roundRobin: null
+                    log: null
+                    retryOnConflict: null
+                    bigintConversion: null
+
+#                	hosts:
+#                		es01:
+#                			host: localhost
+
+
 
 application:
 	errorPresenter: Error
@@ -32,8 +54,5 @@ di:
 	export:
 		parameters: no
 		tags: no
-
-extensions:
-    elastica: Contributte\Elastica\DI\ElasticaExtension
 
 
