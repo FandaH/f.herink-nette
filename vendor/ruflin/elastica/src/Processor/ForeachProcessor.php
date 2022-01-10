@@ -12,6 +12,10 @@ namespace Elastica\Processor;
  */
 class ForeachProcessor extends AbstractProcessor
 {
+    use Traits\FieldTrait;
+    use Traits\IgnoreFailureTrait;
+    use Traits\IgnoreMissingTrait;
+
     public const DEFAULT_IGNORE_MISSING_VALUE = false;
 
     /**
@@ -28,16 +32,6 @@ class ForeachProcessor extends AbstractProcessor
         } else {
             throw new \TypeError(\sprintf('Argument 2 passed to %s::__construct() must be of type %s|array, %s given.', self::class, AbstractProcessor::class, \is_object($processor) ? \get_class($processor) : \gettype($processor)));
         }
-    }
-
-    /**
-     * Set field.
-     *
-     * @return $this
-     */
-    public function setField(string $field): self
-    {
-        return $this->setParam('field', $field);
     }
 
     /**
@@ -59,17 +53,5 @@ class ForeachProcessor extends AbstractProcessor
     public function setRawProcessor(array $processor): self
     {
         return $this->setParam('processor', $processor);
-    }
-
-    /**
-     * Set ignore_missing. Default value false.
-     *
-     * If true and field does not exist or is null, the processor quietly exits without modifying the document
-     *
-     * @return $this
-     */
-    public function setIgnoreMissing(bool $ignoreMissing): self
-    {
-        return $this->setParam('ignore_missing', $ignoreMissing);
     }
 }

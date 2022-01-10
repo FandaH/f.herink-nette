@@ -11,6 +11,10 @@ namespace Elastica\Processor;
  */
 class DateProcessor extends AbstractProcessor
 {
+    use Traits\FieldTrait;
+    use Traits\IgnoreFailureTrait;
+    use Traits\TargetFieldTrait;
+
     public const DEFAULT_TARGET_FIELD_VALUE = '@timestamp';
     public const DEFAULT_TIMEZONE_VALUE = 'UTC';
     public const DEFAULT_LOCALE_VALUE = 'ENGLISH';
@@ -22,16 +26,6 @@ class DateProcessor extends AbstractProcessor
     }
 
     /**
-     * Set field.
-     *
-     * @return $this
-     */
-    public function setField(string $field): self
-    {
-        return $this->setParam('field', $field);
-    }
-
-    /**
      * Set field format. Joda pattern or one of the following formats ISO8601, UNIX, UNIX_MS, or TAI64N.
      *
      * @return $this
@@ -39,16 +33,6 @@ class DateProcessor extends AbstractProcessor
     public function setFormats(array $formats): self
     {
         return $this->setParam('formats', $formats);
-    }
-
-    /**
-     * Set target_field. Default value @timestamp.
-     *
-     * @return $this
-     */
-    public function setTargetField(string $targetField): self
-    {
-        return $this->setParam('target_field', $targetField);
     }
 
     /**

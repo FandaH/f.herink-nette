@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/ruflin/Elastica/compare/7.1.2...master)
+## [Unreleased](https://github.com/ruflin/Elastica/compare/7.1.3...master)
 ### Backward Compatibility Breaks
 ### Added
 ### Changed
@@ -12,6 +12,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+
+## [7.1.3](https://github.com/ruflin/Elastica/compare/7.1.2...7.1.3)
+### Added
+* Added support for scripted upsert on bulk requests [#1974](https://github.com/ruflin/Elastica/pull/1974)
+* Added `Elastica\Aggregation\CumulativeSum` [#1987](https://github.com/ruflin/Elastica/pull/1987)
+* Added `ignore_failure` option to suitable ingest processors [#2003](https://github.com/ruflin/Elastica/pull/2003)
+* Added `ignore_missing` option to `lowercase`, `remove`, `trim` and `uppercase` processors [#2001](https://github.com/ruflin/Elastica/pull/2001)
+* Added `allow_duplicates` option to `append` processor [#2004](https://github.com/ruflin/Elastica/pull/2004)
+* Added `bytes` processor [#2008](https://github.com/ruflin/Elastica/pull/2008)
+* Added `indices_boost` option to `Elastica\Query` [#2018](https://github.com/ruflin/Elastica/pull/2018)
+* Added `Elastica\Query\Terms::setBoost()` method to configure boost [#2035](https://github.com/ruflin/Elastica/pull/2035)
+* Added `Elastica\Query\TermsSet` query [#2020](https://github.com/ruflin/Elastica/pull/2020)
+* Added `terms_set` in query builder [#2036](https://github.com/ruflin/Elastica/pull/2036)
+* Added `Elastica\Aggregation\Traits\BucketsPathTrait` to configure `buckets_path` on aggregations
+  [#2037](https://github.com/ruflin/Elastica/pull/2037)
+  [#2039](https://github.com/ruflin/Elastica/pull/2039)
+* Allowed to configure a sub key when adding a param with `Elastica\Param::addParam()` [#2030](https://github.com/ruflin/Elastica/pull/2030)
+### Changed
+* Triggered deprecation in `Elastica\Result::getType()` method [#2016](https://github.com/ruflin/Elastica/pull/2016)
+* Updated `php-cs-fixer` to `3.3.2` [#2022](https://github.com/ruflin/Elastica/pull/2022)
+* Updated `composer-normalize` to `2.15.0` [#2021](https://github.com/ruflin/Elastica/pull/2021)
+* Updated `elasticsearch` test version to `7.15.2` [#2027](https://github.com/ruflin/Elastica/pull/2027)
+* Extracted setting gap policy to `\Elastica\Aggregation\Traits\GapPolicyTrait` and introduced `\Elastica\Aggregation\GapPolicyInterface` with constants for options [#2023](https://github.com/ruflin/Elastica/pull/2023)
+* Extracted setting `field` to `Elastica\Processor\Traits\FieldTrait` [#2024](https://github.com/ruflin/Elastica/pull/2024)
+* Extracted setting `target_field` to `Elastica\Processor\Traits\TargetFieldTrait` [#2026](https://github.com/ruflin/Elastica/pull/2026)
+* Simplified github action matrix for continuous integration workflow [#2025](https://github.com/ruflin/Elastica/pull/2025)
+### Deprecated
+* Deprecated `Elastica\Query\Common` class, use `Elastica\Query\MatchQuery` instead [#2013](https://github.com/ruflin/Elastica/pull/2013)
+* Deprecated `Elastica\QueryBuilder\DSL\Query::common_terms()`, use `match()` instead [#2013](https://github.com/ruflin/Elastica/pull/2013)
+* Deprecated passing an `int` as 1st argument to `Elastica\Search::setOptionsAndQuery()`, pass an array with the key `size` instead [#2010](https://github.com/ruflin/Elastica/pull/2010)
+* Deprecated `cutoff_frequency` option of `Elastica\Query\MatchQuery` [#2014](https://github.com/ruflin/Elastica/pull/2014)
+* Deprecated `cutoff_frequency` option of `Elastica\Query\MultiMatch` [#2015](https://github.com/ruflin/Elastica/pull/2015)
+* Deprecated `Elastica\Bulk::toString()`, `Elastica\Bulk\Action::toString()` and `Elastica\Request::toString()` methods, use `__toString()` method or cast to string instead [#2033](https://github.com/ruflin/Elastica/pull/2033)
+* Deprecated not passing a `buckets_path` when constructing `Elastica\Aggregation\AvgBucket`, `Elastica\Aggregation\Derivative`, `Elastica\Aggregation\NormalizeAggregation`, `Elastica\Aggregation\PercentilesBucket`, `Elastica\Aggregation\SerialDiff`, `Elastica\Aggregation\StatsBucket` and `Elastica\Aggregation\SumBucket` [#2038](https://github.com/ruflin/Elastica/pull/2038)
+* Deprecated not passing a `method` when constructing `Elastica\Aggregation\NormalizeAggregation` [#2040](https://github.com/ruflin/Elastica/pull/2040)
+### Removed
+* Removed remaining `_type` field usages [#2017](https://github.com/ruflin/Elastica/pull/2017)
+* Removed `Elastica\Bulk::$_type` dead property [#2034](https://github.com/ruflin/Elastica/pull/2034)
+* Removed Elasticsearch old version checks in tests [#2041](https://github.com/ruflin/Elastica/pull/2041)
+### Fixed
+* Fixed type-hint for `Elastica\Search::setOptionsAndQuery()` [#2009](https://github.com/ruflin/Elastica/pull/2009)
+* Fixed terms query params resolution [#2032](https://github.com/ruflin/Elastica/pull/2032)
 
 ## [7.1.2](https://github.com/ruflin/Elastica/compare/7.1.1...7.1.2)
 ### Backward Compatibility Breaks

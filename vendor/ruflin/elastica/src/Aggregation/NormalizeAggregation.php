@@ -11,27 +11,27 @@ use Elastica\Exception\InvalidException;
  */
 class NormalizeAggregation extends AbstractAggregation
 {
+    use Traits\BucketsPathTrait;
+
     public function __construct(string $name, ?string $bucketsPath = null, ?string $method = null)
     {
         parent::__construct($name);
 
         if (null !== $bucketsPath) {
             $this->setBucketsPath($bucketsPath);
+        } elseif (\func_num_args() >= 2) {
+            \trigger_deprecation('ruflin/elastica', '7.1.3', 'Passing null as 2nd argument to "%s()" is deprecated, pass a string instead. It will be removed in 8.0.', __METHOD__);
+        } else {
+            \trigger_deprecation('ruflin/elastica', '7.1.3', 'Not passing a 2nd argument to "%s()" is deprecated, pass a string instead. It will be removed in 8.0.', __METHOD__);
         }
 
         if (null !== $method) {
             $this->setMethod($method);
+        } elseif (\func_num_args() >= 3) {
+            \trigger_deprecation('ruflin/elastica', '7.1.3', 'Passing null as 3rd argument to "%s()" is deprecated, pass a string instead. It will be removed in 8.0.', __METHOD__);
+        } else {
+            \trigger_deprecation('ruflin/elastica', '7.1.3', 'Not passing a 3rd argument to "%s()" is deprecated, pass a string instead. It will be removed in 8.0.', __METHOD__);
         }
-    }
-
-    /**
-     * Set the buckets_path for this aggregation.
-     *
-     * @return $this
-     */
-    public function setBucketsPath(string $bucketsPath): self
-    {
-        return $this->setParam('buckets_path', $bucketsPath);
     }
 
     /**

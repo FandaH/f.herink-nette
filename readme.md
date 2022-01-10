@@ -4,7 +4,7 @@ backend swsystems
 
 ## Ostra verze
 - webserver
-    - http://localhost:82
+    - http://localhost:82 pro adminer http://localhost:82/adminer
     - branch: master
     - apache2 s mod_rewrite, prip. nginx s zohlednenim veci v .htaccess
     - php8.0

@@ -11,22 +11,16 @@ namespace Elastica\Processor;
  */
 class SplitProcessor extends AbstractProcessor
 {
+    use Traits\FieldTrait;
+    use Traits\IgnoreFailureTrait;
+    use Traits\IgnoreMissingTrait;
+
     public const DEFAULT_IGNORE_MISSING_VALUE = false;
 
     public function __construct(string $field, string $separator)
     {
         $this->setField($field);
         $this->setSeparator($separator);
-    }
-
-    /**
-     * Set the field.
-     *
-     * @return $this
-     */
-    public function setField(string $field): self
-    {
-        return $this->setParam('field', $field);
     }
 
     /**
@@ -37,17 +31,5 @@ class SplitProcessor extends AbstractProcessor
     public function setSeparator(string $separator): self
     {
         return $this->setParam('separator', $separator);
-    }
-
-    /**
-     * Set ignore_missing. Default value false.
-     *
-     * @param bool $ignoreMissing only these values are allowed (integer|float|string|boolean|auto)
-     *
-     * @return $this
-     */
-    public function setIgnoreMissing(bool $ignoreMissing): self
-    {
-        return $this->setParam('ignore_missing', $ignoreMissing);
     }
 }

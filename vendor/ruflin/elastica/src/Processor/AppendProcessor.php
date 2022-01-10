@@ -11,6 +11,9 @@ namespace Elastica\Processor;
  */
 class AppendProcessor extends AbstractProcessor
 {
+    use Traits\FieldTrait;
+    use Traits\IgnoreFailureTrait;
+
     /**
      * @param string       $field field name
      * @param array|string $value field values to append
@@ -19,16 +22,6 @@ class AppendProcessor extends AbstractProcessor
     {
         $this->setField($field);
         $this->setValue($value);
-    }
-
-    /**
-     * Set field.
-     *
-     * @return $this
-     */
-    public function setField(string $field): self
-    {
-        return $this->setParam('field', $field);
     }
 
     /**
@@ -41,5 +34,15 @@ class AppendProcessor extends AbstractProcessor
     public function setValue($value): self
     {
         return $this->setParam('value', $value);
+    }
+
+    /**
+     * Set allow_duplicates value.
+     *
+     * @return $this
+     */
+    public function setAllowDuplicates(bool $allowDuplicates): self
+    {
+        return $this->setParam('allow_duplicates', $allowDuplicates);
     }
 }

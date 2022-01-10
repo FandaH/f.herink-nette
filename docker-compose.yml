@@ -32,6 +32,11 @@ services:
       - discovery.type=single-node
       - TAKE_FILE_OWNERSHIP=1
     ports:
-      - "9200:9200"
+      - 9200:9200
     volumes:
       - ./data/elasticsearch:/usr/share/elasticsearch/data
+  adminer:
+    image: adminer
+    ports:
+      - 83:8080
+

@@ -11,6 +11,9 @@ namespace Elastica\Processor;
  */
 class DateIndexNameProcessor extends AbstractProcessor
 {
+    use Traits\FieldTrait;
+    use Traits\IgnoreFailureTrait;
+
     public const DEFAULT_DATE_FORMATS_VALUE = ['ISO8601'];
     public const DEFAULT_INDEX_NAME_FORMAT_VALUE = 'yyyy-MM-dd';
     public const DEFAULT_TIMEZONE_VALUE = 'UTC';
@@ -20,16 +23,6 @@ class DateIndexNameProcessor extends AbstractProcessor
     {
         $this->setField($field);
         $this->setDateRounding($dateRounding);
-    }
-
-    /**
-     * Set field.
-     *
-     * @return $this
-     */
-    public function setField(string $field): self
-    {
-        return $this->setParam('field', $field);
     }
 
     /**

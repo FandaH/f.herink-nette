@@ -3,7 +3,6 @@
 namespace Elastica;
 
 use Elastica\Exception\InvalidException;
-use Elastica\Query\AbstractQuery;
 use Elastica\ResultSet\BuilderInterface;
 use Elastica\ResultSet\DefaultBuilder;
 
@@ -254,8 +253,8 @@ class Search
     /**
      * Search in the set indices.
      *
-     * @param AbstractQuery|array|Query|string $query
-     * @param array|int                        $options Limit or associative array of options (option=>value)
+     * @param array|Query|Query\AbstractQuery|string $query
+     * @param array|int                              $options Limit or associative array of options (option=>value)
      *
      * @throws InvalidException
      */
@@ -282,8 +281,8 @@ class Search
     }
 
     /**
-     * @param AbstractQuery|array|Query|string $query
-     * @param bool                             $fullResult By default only the total hit count is returned. If set to true, the full ResultSet including aggregations is returned
+     * @param array|Query|Query\AbstractQuery|string $query
+     * @param bool                                   $fullResult By default only the total hit count is returned. If set to true, the full ResultSet including aggregations is returned
      *
      * @return int|ResultSet
      */
@@ -310,8 +309,8 @@ class Search
     }
 
     /**
-     * @param array|int                        $options
-     * @param AbstractQuery|array|Query|string $query
+     * @param array|int                                      $options
+     * @param array|Query|Query\AbstractQuery|string|Suggest $query
      */
     public function setOptionsAndQuery($options = null, $query = ''): self
     {
@@ -320,6 +319,7 @@ class Search
         }
 
         if (\is_int($options)) {
+            \trigger_deprecation('ruflin/elastica', '7.1.3', 'Passing an int as 1st argument to "%s()" is deprecated, pass an array with the key "size" instead. It will be removed in 8.0.', __METHOD__);
             $this->getQuery()->setSize($options);
         } elseif (\is_array($options)) {
             if (isset($options['limit'])) {

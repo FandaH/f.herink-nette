@@ -3,17 +3,23 @@
 namespace App\Models\Services;
 
 
-use Contributte\Elastica\Client;
+
+use Elastica\Client;
 
 class ElasticSearch
 {
 
-    /** @var Client */
+    /** @var \Contributte\Elastica\Client */
     private $elasticaClient;
 
     public function __construct(Client $elastica)
     {
         $this->elasticaClient = $elastica;
+    }
+
+
+    public function getClient(){
+        return $this->elasticaClient;
     }
 
 }

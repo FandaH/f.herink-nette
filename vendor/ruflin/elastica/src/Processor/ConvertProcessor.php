@@ -11,6 +11,11 @@ namespace Elastica\Processor;
  */
 class ConvertProcessor extends AbstractProcessor
 {
+    use Traits\FieldTrait;
+    use Traits\IgnoreFailureTrait;
+    use Traits\IgnoreMissingTrait;
+    use Traits\TargetFieldTrait;
+
     public const DEFAULT_TARGET_FIELD_VALUE = 'field';
     public const DEFAULT_IGNORE_MISSING_VALUE = false;
 
@@ -21,16 +26,6 @@ class ConvertProcessor extends AbstractProcessor
     }
 
     /**
-     * Set field.
-     *
-     * @return $this
-     */
-    public function setField(string $field): self
-    {
-        return $this->setParam('field', $field);
-    }
-
-    /**
      * Set field value.
      *
      * @return $this
@@ -38,27 +33,5 @@ class ConvertProcessor extends AbstractProcessor
     public function setType(string $type): self
     {
         return $this->setParam('type', $type);
-    }
-
-    /**
-     * Set target_field. Default value field.
-     *
-     * @return $this
-     */
-    public function setTargetField(string $targetField): self
-    {
-        return $this->setParam('target_field', $targetField);
-    }
-
-    /**
-     * Set ignore_missing. Default value false.
-     *
-     * @param bool $ignoreMissing only these values are allowed (integer|float|string|boolean|auto)
-     *
-     * @return $this
-     */
-    public function setIgnoreMissing(bool $ignoreMissing): self
-    {
-        return $this->setParam('ignore_missing', $ignoreMissing);
     }
 }

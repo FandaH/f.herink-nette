@@ -9,20 +9,22 @@ use Elastica\Exception\InvalidException;
  *
  * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline-percentiles-bucket-aggregation.html
  */
-class PercentilesBucket extends AbstractAggregation
+class PercentilesBucket extends AbstractAggregation implements GapPolicyInterface
 {
+    use Traits\BucketsPathTrait;
+    use Traits\GapPolicyTrait;
     use Traits\KeyedTrait;
 
-    /**
-     * @param string      $name        the name of this aggregation
-     * @param string|null $bucketsPath the field on which to perform this aggregation
-     */
     public function __construct(string $name, ?string $bucketsPath = null)
     {
         parent::__construct($name);
 
         if (null !== $bucketsPath) {
             $this->setBucketsPath($bucketsPath);
+        } elseif (\func_num_args() >= 2) {
+            \trigger_deprecation('ruflin/elastica', '7.1.3', 'Passing null as 2nd argument to "%s()" is deprecated, pass a string instead. It will be removed in 8.0.', __METHOD__);
+        } else {
+            \trigger_deprecation('ruflin/elastica', '7.1.3', 'Not passing a 2nd argument to "%s()" is deprecated, pass a string instead. It will be removed in 8.0.', __METHOD__);
         }
     }
 
@@ -36,22 +38,6 @@ class PercentilesBucket extends AbstractAggregation
         }
 
         return parent::toArray();
-    }
-
-    /**
-     * Set the buckets_path for this aggregation.
-     */
-    public function setBucketsPath(string $bucketsPath): self
-    {
-        return $this->setParam('buckets_path', $bucketsPath);
-    }
-
-    /**
-     * Set the gap policy for this aggregation.
-     */
-    public function setGapPolicy(string $gapPolicy): self
-    {
-        return $this->setParam('gap_policy', $gapPolicy);
     }
 
     /**

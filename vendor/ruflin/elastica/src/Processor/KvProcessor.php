@@ -11,6 +11,11 @@ namespace Elastica\Processor;
  */
 class KvProcessor extends AbstractProcessor
 {
+    use Traits\FieldTrait;
+    use Traits\IgnoreFailureTrait;
+    use Traits\IgnoreMissingTrait;
+    use Traits\TargetFieldTrait;
+
     public const DEFAULT_TARGET_FIELD_VALUE = null;
     public const DEFAULT_IGNORE_MISSING_VALUE = false;
 
@@ -19,16 +24,6 @@ class KvProcessor extends AbstractProcessor
         $this->setField($field);
         $this->setFieldSplit($fieldSplit);
         $this->setValueSplit($valueSplit);
-    }
-
-    /**
-     * Set field name.
-     *
-     * @return $this
-     */
-    public function setField(string $field): self
-    {
-        return $this->setParam('field', $field);
     }
 
     /**
@@ -52,16 +47,6 @@ class KvProcessor extends AbstractProcessor
     }
 
     /**
-     * Set target_field. Default value null.
-     *
-     * @return $this
-     */
-    public function setTargetField(string $targetField): self
-    {
-        return $this->setParam('target_field', $targetField);
-    }
-
-    /**
      * Set include_keys.
      *
      * @return $this
@@ -79,17 +64,5 @@ class KvProcessor extends AbstractProcessor
     public function setExcludeKeys(array $listOfKeys): self
     {
         return $this->setParam('exclude_keys', $listOfKeys);
-    }
-
-    /**
-     * Set ignore_missing. Default value false.
-     *
-     * @param bool $ignoreMissing only these values are allowed (integer|float|string|boolean|auto)
-     *
-     * @return $this
-     */
-    public function setIgnoreMissing(bool $ignoreMissing): self
-    {
-        return $this->setParam('ignore_missing', $ignoreMissing);
     }
 }

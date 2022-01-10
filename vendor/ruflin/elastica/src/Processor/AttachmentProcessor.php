@@ -11,6 +11,10 @@ namespace Elastica\Processor;
  */
 class AttachmentProcessor extends AbstractProcessor
 {
+    use Traits\FieldTrait;
+    use Traits\IgnoreMissingTrait;
+    use Traits\TargetFieldTrait;
+
     public const DEFAULT_TARGET_FIELD_VALUE = 'attachment';
     public const DEFAULT_INDEXED_CHARS_VALUE = 100000;
     public const DEFAULT_IGNORE_MISSING_VALUE = false;
@@ -18,26 +22,6 @@ class AttachmentProcessor extends AbstractProcessor
     public function __construct(string $field)
     {
         $this->setField($field);
-    }
-
-    /**
-     * Set field.
-     *
-     * @return $this
-     */
-    public function setField(string $field): self
-    {
-        return $this->setParam('field', $field);
-    }
-
-    /**
-     * Set target_field. Default attachment.
-     *
-     * @return $this
-     */
-    public function setTargetField(string $targetField): self
-    {
-        return $this->setParam('target_field', $targetField);
     }
 
     /**
@@ -58,15 +42,5 @@ class AttachmentProcessor extends AbstractProcessor
     public function setProperties(array $properties): self
     {
         return $this->setParam('properties', $properties);
-    }
-
-    /**
-     * Set ignore_missing. Default value false.
-     *
-     * @return $this
-     */
-    public function setIgnoreMissing(bool $ignoreMissing): self
-    {
-        return $this->setParam('ignore_missing', $ignoreMissing);
     }
 }
