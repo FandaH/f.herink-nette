@@ -65,6 +65,8 @@ Neukládejte na Gitlab soubory DB, pouze sql dump.
 
 ## Přejmenování kontejneru a služby podle vašeho přání
 
+Níže uvedené pojmenovat vaším jmenem_a_prijmenim
+
 Co je potřeba přejmenovat v souboru Dockerfile.dev
 ```sh
 nette_elastic80 na řádku FROM php:8.0-apache AS nette_elastic80
