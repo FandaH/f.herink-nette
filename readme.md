@@ -1,7 +1,7 @@
 # ZT4 - NETTE TEMPLATE
 
 Tento template je vhodné si naklonovat rovnou už v GitLabu, protože
-projekt už bude mít pojmenování podle vašho přání. 
+projekt už bude mít pojmenování podle vašeho přání. 
 Součástí template je i konfigurace DOCKERU.
 
 ## Import do nového projektu krok 1
