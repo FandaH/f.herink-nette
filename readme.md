@@ -61,7 +61,8 @@ ze souboru docker-compose.yml vč. jména root a hesla.
 ```sh
 mysqldb
 ```
-Neukládejte na Gitlab soubory DB, pouze sql dump.
+Neukládejte na Gitlab soubory DB, pouze sql dump. Jedná se o adresář ./data/database, který musí zůstat
+git ignore.
 
 ## Přejmenování kontejneru a služby podle vašeho přání
 
