@@ -38,7 +38,7 @@ docker-compose up  nebo
 docker-compose up --build
 ```
 V tuto chvili by mel byt docker projekt ready na http://localhost:82 viz soubor docker-compose.yml,
-kde to jde i změnit. --build používáme pro přegenerování imagen kontejneru.
+kde to jde i změnit. --build používáme pro přegenerování image kontejneru.
 ```sh
 http://localhost:82
 ```
