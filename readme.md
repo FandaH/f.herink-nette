@@ -1,110 +1,93 @@
-# Nette test elastic search
+# ZT4 - NETTE TEMPLATE
 
-backend swsystems 
+Tento template je vhodné si naklonovat rovnou už v GitLabu, protože
+projekt už bude mít pojmenování podle vašho přání. 
+Součástí template je i konfigurace DOCKERU.
 
-## Ostra verze
-- webserver
-    - http://localhost:82 pro adminer http://localhost:82/adminer
-    - branch: master
-    - apache2 s mod_rewrite, prip. nginx s zohlednenim veci v .htaccess
-    - php8.0
-        - mysql
-        - mysqli
-        - pdo_mysql
-        - mailparse
-        - mbstring
-        - xdebug
-- databaze:
-    - server: docker.for.mac.localhost:3307
-    - databaze:
-        - test
+## Import do nového projektu krok 1
+Zde vybereme "Import projekt".
 
+![Path mapping](./docker/img/importDoNovehoProjektu.png)
 
-## Instalace vyvojoveho prostredi
+## Import do nového projektu krok 2
+Zde vybereme "Repo by URL.
 
-### Stazeni databazi
-Vsechny databaze predpokladame, ze bezi na localhostu, stahnout a importnout vyse uvedene databaze.
+![Path mapping](./docker/img/importProjektu.png)
 
-### Stazeni z repozitare
-```sh
-git clone https://gitlab.ssemi.cz/root/nette-elastic.git
-```
+## Import do nového projektu krok 3 
+Vyplnění údajů pro import template do vašeho nového projektu:
+##### 1, Git repository URL - URL zdrojového repozitáře (můj template)
+##### 2, Username (optional) - vaše přihlašovací jméno
+##### 3, Password (optional) - vaše přihlašovací heslo
+##### 4, Project name - jméno nového projektu
+##### 5, Visibility Level - viditelnost projektu
 
+![Path mapping](./docker/img/nastaveniImportu.png)
 
-### Inicializace projektu
-#### Konfigurace
-Mistni nastaveni projektu
-```sh
-cp ./app/config/config.local.neon.template ./app/config/config.local.neon
-```
-
-- **cookiePath**: !!! Dulezite !!! - v pripade, ze projekt bezi v podadresari, je nutne nastavit cookiePath na prislusnou hodnotu odpovidajici url,
-  jinak nebude spravne fungovat session a session cookie se muze dostat do konfliktu s jinymi projekty.
-  Pri single site na dedikovanem portu dockeru vsak postaci mit hodnotu "/"
-- **database**: Pripojeni k databazi bezici na hostu je mozne pres **127.0.0.1** v pripade sdilene site (host network). Pri specificky mapovanych portech a oddelene siti je vsak do hostname treba dat **host.docker.internal**
-  Zaroven na db serveru je treba otevrit sitovou komunikaci
-
-Konfigurace debug hostu - do tohoto souboru pridat svoji IP, aby se zobrazovala Tracy,
-pripadne vynutit debug rezim podle potreby
-```sh
-cp ./app/config/debug.conf.php.template ./app/config/debug.conf.php
-```
-
-#### Nastaveni opravneni na adresarich (pravo zapisu pro webserver, nebo pro vsechny)
-```sh
-chmod -R 0777 ./log
-chmod -R 0777 ./data
-```
-
-### Nastaveni dockeru
-
-#### Zkopirovat vzor do aktualniho yml
-```sh
-cp docker-compose.yml.template docker-compose.yml
-```
-Dev prostredi pro docker je nastavene defaultne na host port 82 (kvuli zabraneni konfliktu s lokalnim apache)
-Localhost sit se sdili s hostem, takze aplikace v kontejneru se muze primo pripojit na databazi bezici na hostu.
-Pripadne jine nastaveni site v docker-compose.yml, mapovani souboru/adresaru do kontejneru tamtez.
-
+## Základní příkazy pro konfiguraci kontejneru
 
 #### Build image
 ```sh
 docker-compose build
 ```
-Toto by melo stahnout a nastavit vse potrebne
+Toto by melo stahnout a nastavit vše potřebné
 
-#### Sestaveni a spusteni kontejneru
+#### Sestaveni a spustení kontejneru
 ```sh
-docker-compose up
+docker-compose up  nebo
+docker-compose up --build
 ```
-V tuto chvili by mel byt docker projekt ready na http://localhost:82
+V tuto chvili by mel byt docker projekt ready na http://localhost:82 viz soubor docker-compose.yml,
+kde to jde i změnit. --build používáme pro přegenerování imagen kontejneru.
+```sh
+http://localhost:82
+```
+
+#### ukončení kontejneru
+```sh
+docker-compose down  
+```
+Potom je možné i na stejný port spustit jiný kontejner.
+
+## SQL databáze a adminer
+
+Součásti konfigurace je SQL databáze a adminer. Najdeme jí na url:
+```sh
+http://localhost:82/adminer
+```
+Databáze mezi kontejnery je na portu 3306 viz soubor docker-compose.yml.
+Není potřeba psát do připojení k databázi IP a port. Stačí název service
+ze souboru docker-compose.yml vč. jména root a hesla.
+```sh
+mysqldb
+```
+Neukládejte na Gitlab soubory DB, pouze sql dump.
+
+## Přejmenování kontejneru a služby podle vašeho přání
+
+Co je potřeba přejmenovat v souboru Dockerfile.dev
+```sh
+nette_elastic80 na řádku FROM php:8.0-apache AS nette_elastic80
+```
+Co je potřeba přejmenovat v souboru docker-compose.yml
+```sh
+  nette_elastic_dev80:  #tady
+    image: nette_elastic_dev80:dev #tady
+    container_name: nette_elastic80 #tady
+```
+
+NYNÍ UŽ BUDE TEMPLATE CELÝ PODLE VÁS
+
+## Vstup do běžícího kontejneru Linux
+
+```sh
+  cd aresar_projektu # prepneme se v terninalu PS - PowerShell do adresare projektu
+  docker exec -it nazev_kontejneru bash # pouzijeme nazev kontejneru z docker ps nebo
+  # docker desktopu, bash je linux shell.
+```
 
 
-### Pridat docker konfiguraci do phpstorm
-Je mozne pridat si docker konfiguraci (me to beha i bez toho) pro snadnejsi ovladani kontejneru
-- Run>Edit configurations
-    - Pridat novou, typ **Docker compose**
-    - do compose files nalistovat docker-compose.yml
 
-![Panel](./docker/phpstorm-configuration-panel.png)
-
-
-### Xdebug 3.1.1
-V PHPStormu nastavit v File>Settings>PHP>Debug
-- debug port: 9003
-- vypnout "Force break at first line when a script is outside of project" aby to neodchytavalo adminery a podobne veci kolem
-
-Kdyz se pouziva host network, potom v tuto chvili uz je to funkcni.
-
-#### Nastaveni PHPstorm pro remote ports
-- v ./docker/php.ini zapnout **xdebug.discover_client_host**
-- File>Settings>PHP>Servers
-    - pridat remote server
-        - host: localhost, port: 82
-        - zapnout path mappings
-        - koren projektu namapovat na server dir /var/www
-          ![Path mapping](./docker/phpstorm-xdebug-add-server.png)
-      
 
 
 
