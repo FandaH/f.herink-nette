@@ -1,0 +1,58 @@
+parameters:
+                debug: %debugMode%
+
+    # DB pro zapis
+                database:
+                        driver: mysql
+                        host: docker.for.mac.localhost:3307
+                        dbname: pokus
+                        user: root
+                        password: pokus
+                        default_charset: UTF8
+                        collation: utf8_czech_ci
+                        options: [PDO::MYSQL_ATTR_COMPRESS = true]
+                        debugger:     true        # panel v debugger baru
+                        explain:      true        # explain dotazů v debugger bar
+                        conventions:  static  # nebo static nebo vaší jméno třídy, výchozí je discovered
+                        autowired:    true
+                        dsn: '%database.driver%:host=%database.host%;dbname=%database.dbname%'
+
+                elastica:
+                    debug: %debugMode%
+                    host: localhost
+                    port: null
+                    username: null
+                    password: null
+                    path: null
+                    url: null
+                    proxy: null
+                    persistent: null
+                    timeout: null
+#                    connections: null
+                    roundRobin: null
+                    log: null
+                    retryOnConflict: null
+                    bigintConversion: null
+
+#                	hosts:
+#                		es01:
+#                			host: localhost
+
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+di:
+	export:
+		parameters: no
+		tags: no
+
+
