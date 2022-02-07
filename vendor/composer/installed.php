@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'a2a9692cbd964b345727b6542dcf6068e5d618e2',
+        'reference' => '612a4498099a934e87474d367c66fed1a105f2f6',
         'name' => 'nette/web-project',
         'dev' => true,
     ),
@@ -229,7 +229,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'a2a9692cbd964b345727b6542dcf6068e5d618e2',
+            'reference' => '612a4498099a934e87474d367c66fed1a105f2f6',
             'dev_requirement' => false,
         ),
         'nyholm/dsn' => array(

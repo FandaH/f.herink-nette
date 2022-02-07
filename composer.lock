@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfe3519bbe7677487c04c7b83dcbcdc8",
+    "content-hash": "2fe36ad451c4e9977c937a9e66ad6473",
     "packages": [
         {
             "name": "contributte/elastica",
@@ -2162,7 +2162,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">= 7.4"
+        "php": ">= 8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"
