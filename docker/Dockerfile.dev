@@ -1,4 +1,4 @@
-FROM php:8.0-apache AS nette_elastic80
+FROM php:7.4-apache AS nette_elastic80
 
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y \
