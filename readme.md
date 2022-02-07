@@ -1,7 +1,7 @@
 # ZT4 - NETTE TEMPLATE
 
 Tento template je vhodné si naklonovat rovnou už v GitLabu, protože
-projekt už bude mít pojmenování podle vašho přání. 
+projekt už bude mít pojmenování podle vašeho přání. 
 Součástí template je i konfigurace DOCKERU.
 
 ## Import do nového projektu krok 1
@@ -38,7 +38,7 @@ docker-compose up  nebo
 docker-compose up --build
 ```
 V tuto chvili by mel byt docker projekt ready na http://localhost:82 viz soubor docker-compose.yml,
-kde to jde i změnit. --build používáme pro přegenerování imagen kontejneru.
+kde to jde i změnit. --build používáme pro přegenerování image kontejneru.
 ```sh
 http://localhost:82
 ```
@@ -61,9 +61,12 @@ ze souboru docker-compose.yml vč. jména root a hesla.
 ```sh
 mysqldb
 ```
-Neukládejte na Gitlab soubory DB, pouze sql dump.
+Neukládejte na Gitlab soubory DB, pouze sql dump. Jedná se o adresář ./data/database, který musí zůstat
+git ignore.
 
 ## Přejmenování kontejneru a služby podle vašeho přání
+
+Níže uvedené pojmenovat vaším jmenem_a_prijmenim
 
 Co je potřeba přejmenovat v souboru Dockerfile.dev
 ```sh
