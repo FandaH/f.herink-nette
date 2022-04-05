@@ -4,7 +4,7 @@ parameters:
     # DB pro zapis
                 database:
                         driver: mysql
-                        host: docker.for.mac.localhost:3307
+                        host: mysqldb
                         dbname: pokus
                         user: root
                         password: pokus
