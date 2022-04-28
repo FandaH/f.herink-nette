@@ -18,9 +18,9 @@ public $database;
 
     public function actionDefault(){
 
-$data = $this->database->getPdo()->query('SELECT * FROM pokus')->fetchAll();
+/*$data = $this->database->getPdo()->query('SELECT * FROM pokus')->fetchAll();
 dump($data);
 die;
-    }
+   */ }
 
 }
