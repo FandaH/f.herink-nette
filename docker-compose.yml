@@ -8,10 +8,10 @@ services:
       context: ./docker
       dockerfile: ./Dockerfile.dev
     ports:
-      - "82:82" # HOST_PORT:CONTAINER_PORT
+      - "82:80" # HOST_PORT:CONTAINER_PORT
     #    network_mode: "host" # sdileni localhost s hostem, pozor na konflikt portu, viz. apache.ports.conf a apache.vhost.conf, nefunguje na ios
     volumes:
-      - .:/var/www
+      - ./web:/var/www
       - ./docker/php.ini:/usr/local/etc/php/php.ini
       - ./log:/var/log/nette:rw
       - ./docker/apache.ports.conf:/etc/apache2/ports.conf
