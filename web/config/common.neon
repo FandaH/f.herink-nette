@@ -4,7 +4,7 @@ parameters:
     # DB pro zapis
                 database:
                         driver: mysql
-                        host: mysqldb
+                        host: nette_mysql
                         dbname: pokus
                         user: root
                         password: pokus

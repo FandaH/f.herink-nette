@@ -1,23 +1,34 @@
 version: '3.7'
 
+volumes:
+  web_data:
+    name: vendor
+
 services:
-  nette_elastic_dev80:
+  nette_web:
     image: nette_elastic_dev80:dev
-    container_name: nette_elastic80
+    container_name: nette_web
+    hostname: "nette_web.ssemi.cz"
     build:
       context: ./docker
       dockerfile: ./Dockerfile.dev
+    depends_on:
+      - nette_mysql
+
     ports:
       - "82:80" # HOST_PORT:CONTAINER_PORT
     #    network_mode: "host" # sdileni localhost s hostem, pozor na konflikt portu, viz. apache.ports.conf a apache.vhost.conf, nefunguje na ios
     volumes:
-      - ./web:/var/www
+      - web_data:/var/www/html/vendor
+      - ./web:/var/www/html
       - ./docker/php.ini:/usr/local/etc/php/php.ini
       - ./log:/var/log/nette:rw
       - ./docker/apache.ports.conf:/etc/apache2/ports.conf
       - ./docker/apache.vhost.conf:/etc/apache2/sites-enabled/vhost.conf
-  mysqldb:
+  nette_mysql:
     image: mariadb:latest
+    container_name: nette_mysql
+    hostname: "nette_mysql.ssemi.cz"
     ports:
       - 3307:3306
     environment:

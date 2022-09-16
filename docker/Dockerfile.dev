@@ -60,6 +60,10 @@ RUN echo "" > /etc/apache2/ports.conf
 RUN printf '\n\nServerName control.local\n\n' >> /etc/apache2/apache2.conf
 RUN rm -rf /var/www/html
 
+RUN mkdir /var/www/html/vendor
+COPY ./vendor /var/www/html/vendor
+
+
 COPY ./php.ini /etc/php/php.ini
 
 CMD ["apache2-foreground"]
