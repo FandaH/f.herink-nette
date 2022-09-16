@@ -2,11 +2,11 @@ version: '3.7'
 
 volumes:
   web_data:
-    name: vendor
+    name: nette_vendor
 
 services:
   nette_web:
-    image: nette_elastic_dev80:dev
+    image: nette_web
     container_name: nette_web
     hostname: "nette_web.ssemi.cz"
     build:
