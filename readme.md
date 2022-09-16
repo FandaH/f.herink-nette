@@ -59,7 +59,7 @@ Databáze mezi kontejnery je na portu 3306 viz soubor docker-compose.yml.
 Není potřeba psát do připojení k databázi IP a port. Stačí název service
 ze souboru docker-compose.yml vč. jména root a hesla.
 ```sh
-mysqldb
+nette_mysql
 ```
 Neukládejte na Gitlab soubory DB, pouze sql dump. Jedná se o adresář ./data/database, který musí zůstat
 git ignore.
