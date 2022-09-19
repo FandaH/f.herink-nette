@@ -34,6 +34,38 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/vendor/contributte/elastica" />
+      <path value="$PROJECT_DIR$/web/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/web/vendor/latte/latte" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/di" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/http" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/mail" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/neon" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/forms" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/finder" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/tester" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/caching" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/routing" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/database" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/security" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/bootstrap" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/application" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/robot-loader" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/php-generator" />
+      <path value="$PROJECT_DIR$/web/vendor/nette/component-model" />
+      <path value="$PROJECT_DIR$/web/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/web/vendor/tracy/tracy" />
+      <path value="$PROJECT_DIR$/web/vendor/nyholm/dsn" />
+      <path value="$PROJECT_DIR$/web/vendor/ruflin/elastica" />
+      <path value="$PROJECT_DIR$/web/vendor/ezimuel/ringphp" />
+      <path value="$PROJECT_DIR$/web/vendor/ezimuel/guzzlestreams" />
+      <path value="$PROJECT_DIR$/web/vendor/symfony/thanks" />
+      <path value="$PROJECT_DIR$/web/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/web/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/web/vendor/composer" />
+      <path value="$PROJECT_DIR$/web/vendor/contributte/elastica" />
+      <path value="$PROJECT_DIR$/web/vendor/elasticsearch/elasticsearch" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

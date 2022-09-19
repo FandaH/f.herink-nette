@@ -2,18 +2,18 @@ version: '3.7'
 
 volumes:
   web_data:
-    name: nette_vendor
+    name: herink_vendor
 
 services:
   nette_web:
-    image: nette_web
-    container_name: nette_web
-    hostname: "nette_web.ssemi.cz"
+    image: herink_web_nette
+    container_name: herink_web_nette
+    hostname: "xherink-web.ssemi.cz"
     build:
       context: ./docker
       dockerfile: ./Dockerfile.dev
     depends_on:
-      - nette_mysql
+      - herink_mysql
 
     ports:
       - "82:80" # HOST_PORT:CONTAINER_PORT
@@ -25,10 +25,10 @@ services:
       - ./log:/var/log/nette:rw
       - ./docker/apache.ports.conf:/etc/apache2/ports.conf
       - ./docker/apache.vhost.conf:/etc/apache2/sites-enabled/vhost.conf
-  nette_mysql:
+  herink_mysql:
     image: mariadb:latest
     container_name: nette_mysql
-    hostname: "nette_mysql.ssemi.cz"
+    hostname: "herink-mysql.ssemi.cz"
     ports:
       - 3307:3306
     environment:

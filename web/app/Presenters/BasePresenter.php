@@ -10,17 +10,28 @@ use Elasticsearch\Client;
 class BasePresenter extends \Nette\Application\UI\Presenter
 {
 
-    /**
-     * @var \App\Models\Services\DatabaseConnection
-     * @inject
-     */
-public $database;
+    public $layout = "sbadmin";
 
-    public function actionDefault(){
+    public function startup() {
 
-/*$data = $this->database->getPdo()->query('SELECT * FROM pokus')->fetchAll();
-dump($data);
-die;
-   */ }
+    parent::startup();
+
+
+        
+    $this->setLayout($this->layout);
+    $this->template->layout = $this->getLayout();
+
+
+    }
+
+   
 
 }
+
+
+
+
+
+
+
+
