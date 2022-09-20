@@ -10,7 +10,7 @@ use Elasticsearch\Client;
 class BasePresenter extends \Nette\Application\UI\Presenter
 {
 
-    public $layout = "sbadmin";
+    public $layout = "sbadminforms";
 
     public function startup() {
 

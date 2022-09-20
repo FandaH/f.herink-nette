@@ -4,27 +4,33 @@ namespace App\Models\Forms\Sign;
 
 use Nette\Application\UI\Form;
 
-
-class In extends Forms
+class In extends Form
 {
-    protected function createComponentRegistrationForm(): Form
+
+public $presenter;
+
+public $name;
+
+    /**
+     * @param $presenter
+     * @param $name
+     */
+    public function __construct($presenter, $name)
     {
-        $form = new Form;
-        $form->addText('name', 'Name:');
-        $form->addPassword('password', 'Password:');
-        $form->addSubmit('send', 'Sign up');
-        $form->onSuccess[] = [$this, 'formSucceeded'];
-        return $form;
+
+        parent::__construct($presenter, $name);
+$this->addCheckbox('sadsad', 'dsfdsf');
+
+//        $forms = new Form;
+//        $forms->addText('name', 'Name:');
+//        $forms->addPassword('password', 'Password:');
+//        $forms->addSubmit('send', 'Sign up');
+
     }
 
-    public function formSucceeded(Form $form, $data): void
-    {
-        // here we will process the data sent by the form
-        // $data->name contains name
-        // $data->password contains password
-        $this->flashMessage('You have successfully signed up.');
-        $this->redirect('Homepage:');
-    }
+
 }
-?>
 
+
+
+?>
